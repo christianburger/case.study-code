@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { PaginationComponent } from './view/components/pagination/pagination.component';
 import { MatListModule } from '@angular/material/list';
 import { FilterComponent } from './view/filter/filter.component';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FilterComponent } from './view/filter/filter.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatCardModule,
-    MatListModule 
+    MatListModule,
+    FormsModule 
   ],
   providers: [
     LaunchpadApiService,

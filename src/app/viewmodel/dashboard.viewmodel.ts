@@ -7,6 +7,7 @@ import { DashboardLaunchpad } from '../model/dashboard-launchpad.model'; // Impo
 @Injectable()
 export class DashboardViewModel {
   launchpads: DashboardLaunchpad[] = [];
+  filteredLaunchpads: DashboardLaunchpad[] = []; 
   errorMessage?: string;
 
   private fetchCompleteSubject = new Subject<void>();
@@ -24,18 +25,30 @@ export class DashboardViewModel {
             wikipediaLink: `https://en.wikipedia.org/wiki/${launchpad.name.replace(/\s/g, '_')}`,
             launches: launchpad.launches
           }));
-          this.fetchCompleteSubject.next(); // Emit that the fetch operation is complete
+          this.filteredLaunchpads = this.launchpads.slice(); 
+          this.fetchCompleteSubject.next(); 
           observer.next();
           observer.complete();
         },
         (error) => {
           this.errorMessage = 'Failed to load launchpads';
           console.error('Error loading launchpads:', error);
-          this.fetchCompleteSubject.next(); // Emit that the fetch operation is complete, even if it failed
+          this.fetchCompleteSubject.next(); 
           observer.error(error);
         }
       );
     });
+  }
+
+  filterLaunchpads(searchTerm: string): void {
+    if (!searchTerm) {
+      this.filteredLaunchpads = this.launchpads.slice(); 
+    } else {
+      this.filteredLaunchpads = this.launchpads.filter(launchpad =>
+        launchpad.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        launchpad.region.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
   }
 }
 
