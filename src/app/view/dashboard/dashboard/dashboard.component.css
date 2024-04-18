@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Set height of body to 100% of viewport height */
+}
+
+:host {
+  background-color: lightblue;
+}
+
+.left-content {
+  width: 50%;
+  height: 20%;
+  padding: 10px;
+  margin-left: 0px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.right-content {
+  width: 50%;
+  height: 20%;
+  padding: 0px;
+  margin-left: 40px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.mat-card {
+  height: 100pt; /* Set height of cards to 100pt */
+  margin-bottom: 20px; /* Ensure margin between cards */
+  margin-left: 20px; /* Ensure margin between cards */
+  margin-right: 20px; /* Ensure margin between cards */
+}
+  
+.col-md-4 {
+  padding: 0; /* Reset padding for Bootstrap grid */
+}
+
+/* Reset padding for Bootstrap grid */
+.col-md-4 {
+  padding: 0;
+}
+
+/* Center the title */
+h1 {
+  text-align: center;
+}
+
+.card-content {
+  display: flex;
+  justify-content: right;
+}
+
+.mat-card {
+  background-color: rgba(13, 22, 48, 0.438); /* Set the background color of the cards to blue */
+}
+
+/* Header alignment */
+mat-card-header {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin-bottom: 10px;
+  background-color: rgba(46, 78, 223, 0.438); /* Set the background color of the cards to blue */
+}
+
+.mat-card-content {
+  margin-top: 0pt;
+  margin-bottom: 0pt;
+  max-height: 70pt; /* Limit the height of the card content */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  background-color: rgba(175, 108, 20, 0.438); /* Set the background color of the cards to blue */
+}

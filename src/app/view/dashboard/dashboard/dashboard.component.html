@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-4" *ngFor="let launchpad of viewModel.launchpads | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+    <mat-card>
+      <div class="card-content">
+        <div class="left-content">
+          <mat-card-header>
+            <mat-card-title>{{ launchpad.fullName}}</mat-card-title>
+            <mat-card-subtitle>Name: {{ launchpad.name}}</mat-card-subtitle>
+            <mat-card-subtitle>Region: {{ launchpad.region }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Wikipedia Link: <a [href]="launchpad.wikipediaLink" target="_blank">{{ launchpad.fullName }} on Wikipedia</a></p>
+            <p>Launches: {{ launchpad.launches.length }}</p>
+          </mat-card-content>
+        </div>
+        <div class="right-content">
+          <h3>Launches</h3>
+          <mat-card-content class="left-content">
+            <mat-list>
+              <mat-list-item *ngFor="let launch of launchpad.launches">
+                {{ launch }}
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<div class="pagination">
+  <button (click)="previousPage()" [disabled]="currentPage === 1">&lt;</button>
+  <span>Page {{ currentPage }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">&gt;</button>
+</div>
