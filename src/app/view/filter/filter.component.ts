@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent {
+  searchTerm: string = ''; // Define searchTerm property
 
-  constructor() { }
+  @Output() filterChange: EventEmitter<string> = new EventEmitter<string>(); // Emit event when filter changes
 
-  ngOnInit(): void {
+  constructor() {}
+
+  applyFilter(): void {
+    this.filterChange.emit(this.searchTerm); // Emit the searchTerm when applyFilter is called
   }
-
 }

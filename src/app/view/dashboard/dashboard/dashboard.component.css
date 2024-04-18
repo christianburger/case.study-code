@@ -22,7 +22,6 @@ body {
   height: 20%;
   padding: 0px;
   margin-left: 40px;
-  max-height: 100%;
   overflow-y: auto;
 }
 
@@ -68,7 +67,34 @@ mat-card-header {
 .mat-card-content {
   margin-top: 0pt;
   margin-bottom: 0pt;
-  max-height: 70pt; /* Limit the height of the card content */
+  max-height: 50pt; /* Limit the height of the card content */
   overflow-y: auto; /* Enable vertical scrolling if content overflows */
   background-color: rgba(175, 108, 20, 0.438); /* Set the background color of the cards to blue */
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.prev-btn,
+.next-btn {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background-color: #0056b3;
+}
+
+.page-number {
+  font-size: 14px;
+  font-weight: bold;
 }
