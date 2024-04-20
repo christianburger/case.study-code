@@ -1,35 +1,5 @@
 <h1>SpaceX Launchpad Dashboard</h1>
 
-<div class="row">
-  <div class="col-md-4" *ngFor="let launchpad of pagedLaunchpads">
-    <mat-card>
-      <div class="card-content">
-        <div class="left-content">
-          <mat-card-header>
-            <mat-card-title>{{ launchpad.fullName }}</mat-card-title>
-            <mat-card-subtitle>Name: {{ launchpad.name }}</mat-card-subtitle>
-            <mat-card-subtitle>Region: {{ launchpad.region }}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>Wikipedia Link: <a [href]="launchpad.wikipediaLink" target="_blank">{{ launchpad.fullName }} on Wikipedia</a></p>
-            <p>Launches: {{ launchpad.launches.length }}</p>
-          </mat-card-content>
-        </div>
-        <div class="right-content">
-          <h4>Launches</h4>
-          <mat-card-content class="left-content">
-            <mat-selection-list [multiple]="false" (selectionChange)="onItemSelectionChange($event)">
-              <mat-list-option *ngFor="let launch of launchpad.launches" [value]="launch">
-                {{ launch }}
-              </mat-list-option>
-            </mat-selection-list>
-          </mat-card-content>
-        </div>
-      </div>
-    </mat-card>
-  </div>
-</div>
-
 <div>
   <app-filter (filterChange)="onFilterChange($event)"></app-filter>
 </div>
@@ -58,4 +28,35 @@
 
   <!-- Next Button -->
   <button class="next-btn" (click)="nextPage()">Next</button>
+</div>
+
+
+<div class="row">
+  <div class="col-md-4" *ngFor="let launchpad of pagedLaunchpads">
+    <mat-card>
+      <div class="card-content">
+        <div class="left-content">
+          <mat-card-header>
+            <mat-card-title>{{ launchpad.fullName }}</mat-card-title>
+            <mat-card-subtitle>Name: {{ launchpad.name }}</mat-card-subtitle>
+            <mat-card-subtitle>Region: {{ launchpad.region }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Wikipedia Link: <a [href]="launchpad.wikipediaLink" target="_blank">{{ launchpad.fullName }} on Wikipedia</a></p>
+            <p>Launches: {{ launchpad.launches.length }}</p>
+          </mat-card-content>
+        </div>
+        <div class="right-content">
+          <h4>Launches</h4>
+          <mat-card-content class="left-content">
+            <mat-selection-list [multiple]="false" (selectionChange)="onItemSelectionChange($event)">
+              <mat-list-option *ngFor="let launch of launchpad.launches" [value]="launch">
+                {{ launch }}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-card-content>
+        </div>
+      </div>
+    </mat-card>
+  </div>
 </div>

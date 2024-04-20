@@ -10,10 +10,10 @@ import { EventCalendarComponent } from './view/event-calendar/event-calendar/eve
 import { LaunchpadApiService } from './model/services/launchpad-api.service';
 import { DashboardViewModel } from './viewmodel/dashboard.viewmodel'; // Import DashboardViewModel
 import { MatCardModule } from '@angular/material/card';
-import { PaginationComponent } from './view/components/pagination/pagination.component';
+import { PaginationComponent } from './view/pagination/pagination.component';
 import { MatListModule } from '@angular/material/list';
 import { FilterComponent } from './view/filter/filter.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

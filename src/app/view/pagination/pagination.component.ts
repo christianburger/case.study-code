@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DashboardViewModel } from '../../viewmodel/dashboard.viewmodel';
 
 @Component({
   selector: 'app-pagination',
@@ -13,9 +14,9 @@ export class PaginationComponent {
   @Output() pageChanged: EventEmitter<number> = new EventEmitter<number>();
 
   get totalPages(): number {
-    return Math.ceil(this.totalItems / this.itemsPerPage);
+    return this.viewModel.filteredLaunchpads ? Math.ceil(this.viewModel.filteredLaunchpads.length / this.itemsPerPage) : 0;
   }
-
+  
   previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -32,6 +33,5 @@ export class PaginationComponent {
     }
   }
 
-  constructor() {}
-
+  constructor(public viewModel: DashboardViewModel) {}
 }

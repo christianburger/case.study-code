@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LaunchpadApiService } from '../../../model/services/launchpad-api.service';
 import { DashboardViewModel } from '../../../viewmodel/dashboard.viewmodel';
 
 @Component({

@@ -69,11 +69,13 @@ describe('DashboardViewModel', () => {
 
     viewModel.fetchLaunchpads().subscribe(() => {
       console.log('Fetch complete. Launchpads:', viewModel.launchpads);
-      // Expectations to verify the behavior
       expect(viewModel.launchpads.length).toBe(mockLaunchpads.length);
+      var count: number = 0;
       viewModel.launchpads.forEach(launchpad => {
         console.log('Launchpad:', launchpad);
-        expect(launchpad.name).toEqual( .name);
+        expect(launchpad.fullName).toEqual(mockLaunchpads[count].full_name);
+        console.log('Launchpad TEST: COUNT', count);
+        count ++;
       });
     });
   });
