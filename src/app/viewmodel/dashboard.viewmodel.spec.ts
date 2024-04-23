@@ -68,10 +68,10 @@ describe('DashboardViewModel', () => {
     });
 
     viewModel.fetchLaunchpads().subscribe(() => {
-      console.log('Fetch complete. Launchpads:', viewModel.launchpads);
-      expect(viewModel.launchpads.length).toBe(mockLaunchpads.length);
+      console.log('Fetch complete. Launchpads:', viewModel.dashboardLaunchpads);
+      expect(viewModel.dashboardLaunchpads.length).toBe(mockLaunchpads.length);
       var count: number = 0;
-      viewModel.launchpads.forEach(launchpad => {
+      viewModel.dashboardLaunchpads.forEach(launchpad => {
         console.log('Launchpad:', launchpad);
         expect(launchpad.fullName).toEqual(mockLaunchpads[count].full_name);
         console.log('Launchpad TEST: COUNT', count);
@@ -79,4 +79,59 @@ describe('DashboardViewModel', () => {
       });
     });
   });
+
+  it('should fetch and convert launchpads successfully', () => {
+    const mockLaunchpads: Launchpad[] = [
+      new Launchpad(
+        { large: [] },
+        'Launchpad 1',
+        'Launchpad 1 Full Name',
+        'Locality 1',
+        'Region 1',
+        0,
+        0,
+        0,
+        0,
+        [],
+        'UTC',
+        [],
+        'active',
+        'Launchpad 1 Details',
+        '1'
+      ),
+      new Launchpad(
+        { large: [] },
+        'Launchpad 2',
+        'Launchpad 2 Full Name',
+        'Locality 2',
+        'Region 2',
+        0,
+        0,
+        0,
+        0,
+        [],
+        'UTC',
+        [],
+        'active',
+        'Launchpad 2 Details',
+        '2'
+      )
+    ];
+  
+    launchpadApiService.getLaunchpads.and.returnValue(of(mockLaunchpads));
+  
+    viewModel.fetchLaunchpads().subscribe(() => {
+      expect(viewModel.dashboardLaunchpads.length).toBe(mockLaunchpads.length);
+      viewModel.dashboardLaunchpads.forEach((launchpad, index) => {
+        const mockLaunchpad = mockLaunchpads[index];
+        expect(launchpad.fullName).toEqual(mockLaunchpad.full_name);
+        expect(launchpad.name).toEqual(mockLaunchpad.name);
+        expect(launchpad.region).toEqual(mockLaunchpad.region);
+        expect(launchpad.wikipediaLink).toEqual(`https://en.wikipedia.org/wiki/${mockLaunchpad.name.replace(/\s/g, '_')}`);
+        expect(launchpad.launches).toEqual(mockLaunchpad.launches);
+      });
+    });
+  });
+  
+
 });

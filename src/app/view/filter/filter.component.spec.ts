@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatCardModule } from '@angular/material/card';
 import { FilterComponent } from './filter.component';
 
 describe('FilterComponent', () => {
@@ -18,6 +18,8 @@ describe('FilterComponent', () => {
   });
 
   it('should create', () => {
+    console.log("START: should create FilterComponent.");
     expect(component).toBeTruthy();
+    console.log("END: should create FilterComponent.");
   });
 });

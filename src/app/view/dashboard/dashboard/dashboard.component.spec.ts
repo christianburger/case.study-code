@@ -2,9 +2,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardViewModel } from '../../../viewmodel/dashboard.viewmodel';
-import { FilterComponent } from '../../filter/filter.component'; // Import FilterComponent
+import { FilterComponent } from '../../filter/filter.component';
 import { PaginationComponent } from '../../pagination/pagination.component';
 import { DashboardLaunchpad } from 'src/app/model/dashboard-launchpad.model';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 import { of } from 'rxjs';
 
 describe('DashboardComponent', () => {
@@ -21,35 +28,48 @@ describe('DashboardComponent', () => {
     mockDashboardViewModel = {
       fetchLaunchpads: jasmine.createSpy('fetchLaunchpads').and.returnValue(of(mockLaunchpads)),
       filterLaunchpads: jasmine.createSpy('filterLaunchpads'),
-      launchpads: mockLaunchpads, // Include launchpads field
-      filteredLaunchpads: mockLaunchpads // Include filteredLaunchpads field
+      dashboardLaunchpads: mockLaunchpads,
+      filteredLaunchpads: mockLaunchpads
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         DashboardComponent,
-        FilterComponent, // Add FilterComponent to declarations
-        PaginationComponent
+        FilterComponent,
+        PaginationComponent,
       ],
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        MatCardModule,
+        MatSelectModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        MatListModule,
+        MatFormFieldModule,
+      ],
       providers: [
         { provide: DashboardViewModel, useValue: mockDashboardViewModel }
       ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create component dashboard.', () => {
+    console.log("START: should create component dashboard.");
     expect(component).toBeTruthy();
+    console.log("END: should create component dashboard.");
   });
 
   it('should fetch launchpads on initialization', () => {
+    console.log("START: should fetch launchpads on initialization");
     expect(mockDashboardViewModel.fetchLaunchpads).toHaveBeenCalled();
-    expect(component.viewModel.launchpads.length).toBeGreaterThan(0); // Ensure launchpads are populated
-    expect(component.viewModel.launchpads[0]).toBeInstanceOf(DashboardLaunchpad); // Ensure launchpads are instances of DashboardLaunchpad
+    expect(component.viewModel.dashboardLaunchpads.length).toBeGreaterThan(0);
+    expect(component.viewModel.dashboardLaunchpads[0]).toBeInstanceOf(DashboardLaunchpad);
+    console.log("END: should fetch launchpads on initialization");
   });
+
 });

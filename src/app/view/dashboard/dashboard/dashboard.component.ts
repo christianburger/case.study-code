@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 5;
   searchTerm: string = '';
-  pagedLaunchpads: any[] = []; // Define pagedLaunchpads array
+  pagedLaunchpads: any[] = [];
 
   constructor(private dashboardViewModel: DashboardViewModel) {
     this.viewModel = this.dashboardViewModel;
@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewModel.fetchLaunchpads().subscribe(() => {
-      console.log('Launchpads fetched:', this.viewModel.launchpads);
+      console.log('Launchpads fetched:', this.viewModel.dashboardLaunchpads);
       this.applyFilter();
     });
   }
@@ -31,20 +31,20 @@ export class DashboardComponent implements OnInit {
   previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.applyFilter(); // Update the filtered launchpads when navigating
+      this.applyFilter(); 
     }
   }
 
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
-      this.applyFilter(); // Update the filtered launchpads when navigating
+      this.applyFilter(); 
     }
   }
 
   applyFilter(): void {
     this.viewModel.filterLaunchpads(this.searchTerm);
-    this.updatePagedLaunchpads(); // Update the paged launchpads after filtering
+    this.updatePagedLaunchpads(); 
   }
 
   onFilterChange(searchTerm: string): void {
@@ -57,8 +57,8 @@ export class DashboardComponent implements OnInit {
   }
 
   pageChanged(pageNumber: number): void {
-    this.currentPage = pageNumber; // Update current page number
-    this.updatePagedLaunchpads(); // Update the paged launchpads when page changes
+    this.currentPage = pageNumber; 
+    this.updatePagedLaunchpads();
     console.log('Page changed to:', pageNumber);
   }
 

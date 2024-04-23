@@ -6,7 +6,7 @@ import { DashboardLaunchpad } from '../model/dashboard-launchpad.model'; // Impo
 
 @Injectable()
 export class DashboardViewModel {
-  launchpads: DashboardLaunchpad[] = [];
+  dashboardLaunchpads: DashboardLaunchpad[] = [];
   filteredLaunchpads: DashboardLaunchpad[] = []; 
   errorMessage?: string;
 
@@ -18,14 +18,14 @@ export class DashboardViewModel {
     return new Observable<void>((observer) => {
       this.launchpadApiService.getLaunchpads().subscribe(
         (launchpads: Launchpad[]) => {
-          this.launchpads = launchpads.map(launchpad => ({
+          this.dashboardLaunchpads= launchpads.map(launchpad => ({
             name: launchpad.name,
             fullName: launchpad.full_name,
             region: launchpad.region,
             wikipediaLink: `https://en.wikipedia.org/wiki/${launchpad.name.replace(/\s/g, '_')}`,
             launches: launchpad.launches
           }));
-          this.filteredLaunchpads = this.launchpads.slice(); 
+          this.filteredLaunchpads = this.dashboardLaunchpads.slice(); 
           this.fetchCompleteSubject.next(); 
           observer.next();
           observer.complete();
@@ -42,9 +42,9 @@ export class DashboardViewModel {
 
   filterLaunchpads(searchTerm: string): void {
     if (!searchTerm) {
-      this.filteredLaunchpads = this.launchpads.slice(); 
+      this.filteredLaunchpads = this.dashboardLaunchpads.slice(); 
     } else {
-      this.filteredLaunchpads = this.launchpads.filter(launchpad =>
+      this.filteredLaunchpads = this.dashboardLaunchpads.filter(launchpad =>
         launchpad.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         launchpad.region.toLowerCase().includes(searchTerm.toLowerCase())
       );

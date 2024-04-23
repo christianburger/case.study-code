@@ -5,31 +5,20 @@
 </div>
 
 <div class="container">
-  <!-- Pagination -->
-  <app-pagination
-    [totalItems]="viewModel.filteredLaunchpads.length"
-    [itemsPerPage]="itemsPerPage"
-    [(currentPage)]="currentPage"
-    (pageChanged)="pageChanged($event)">
+  <app-pagination [totalItems]="viewModel.filteredLaunchpads.length" [itemsPerPage]="itemsPerPage"
+    [(currentPage)]="currentPage" (pageChanged)="pageChanged($event)">
   </app-pagination>
 
-  <!-- No Results Message -->
   <ng-template #noResults>
     <p>No launchpads found.</p>
   </ng-template>
 </div>
 
 <div class="pagination">
-  <!-- Previous Button -->
   <button class="prev-btn" (click)="previousPage()">Previous</button>
-
-  <!-- Page Number -->
   <span class="page-number">Page {{ currentPage }} of {{ totalPages }}</span>
-
-  <!-- Next Button -->
   <button class="next-btn" (click)="nextPage()">Next</button>
 </div>
-
 
 <div class="row">
   <div class="col-md-4" *ngFor="let launchpad of pagedLaunchpads">
@@ -42,7 +31,8 @@
             <mat-card-subtitle>Region: {{ launchpad.region }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <p>Wikipedia Link: <a [href]="launchpad.wikipediaLink" target="_blank">{{ launchpad.fullName }} on Wikipedia</a></p>
+            <p>Wikipedia Link: <a [href]="launchpad.wikipediaLink" target="_blank">{{ launchpad.fullName }} on
+                Wikipedia</a></p>
             <p>Launches: {{ launchpad.launches.length }}</p>
           </mat-card-content>
         </div>
